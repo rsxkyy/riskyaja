@@ -198,14 +198,9 @@
 
         window.onload = () => {
             fireConfetti();
-        };
+            playMusic();
+            };
 
-        document.addEventListener("click", () => {
-            if (!isPlaying) {
-                audio.play();
-                isPlaying = true;
-            }
-        });
 
         function toggleMusic() {
             if (isPlaying) {
@@ -233,4 +228,5 @@
 
 </body>
 </html>
+
 
