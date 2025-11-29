@@ -37,18 +37,11 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- Kontainer Utama --- */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
-        }
-
-        .show-content {
             opacity: 1;
             transform: translateY(0);
         }
@@ -110,7 +103,6 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative;
         }
 
         .card p {
@@ -150,10 +142,7 @@
 </head>
 <body>
 
-    <!-- Tidak ada overlay lagi -->
-
-    <div class="container show-content" id="mainContent">
-        
+    <div class="container">
         <h1>Happy Birthday!</h1>
 
         <div class="date-badge">
@@ -193,7 +182,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="bergema2.mp3" type="audio/mpeg">
+        <source src="bergema_compressed.mp3" type="audio/mpeg">
     </audio>
 
     <div class="music-control" onclick="toggleMusic()">
@@ -207,27 +196,16 @@
         const musicIcon = document.getElementById('musicIcon');
         let isPlaying = false;
 
-        // Auto jalan ketika halaman dibuka
         window.onload = () => {
-    fireConfetti();
-};
+            fireConfetti();
+        };
 
-// musik baru mulai ketika user pertama kali klik apa saja
-document.addEventListener("click", () => {
-    if (!isPlaying) {
-        audio.play();
-        isPlaying = true;
-    }
-});
-
-
-        function playMusic() {
-            audio.play().then(() => {
+        document.addEventListener("click", () => {
+            if (!isPlaying) {
+                audio.play();
                 isPlaying = true;
-            }).catch(() => {
-                console.log("Autoplay diblokir browser.");
-            });
-        }
+            }
+        });
 
         function toggleMusic() {
             if (isPlaying) {
@@ -245,18 +223,8 @@ document.addEventListener("click", () => {
             const end = Date.now() + duration;
 
             (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 }
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 }
-                });
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
 
                 if (Date.now() < end) requestAnimationFrame(frame);
             }());
@@ -265,5 +233,3 @@ document.addEventListener("click", () => {
 
 </body>
 </html>
-
-
