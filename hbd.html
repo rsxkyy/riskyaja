@@ -209,9 +209,17 @@
 
         // Auto jalan ketika halaman dibuka
         window.onload = () => {
-            fireConfetti();
-            playMusic();
-        };
+    fireConfetti();
+};
+
+// musik baru mulai ketika user pertama kali klik apa saja
+document.addEventListener("click", () => {
+    if (!isPlaying) {
+        audio.play();
+        isPlaying = true;
+    }
+});
+
 
         function playMusic() {
             audio.play().then(() => {
@@ -257,3 +265,4 @@
 
 </body>
 </html>
+
